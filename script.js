@@ -11,3 +11,11 @@ function criarTarefa() {
 
 const button = document.getElementById('criar-tarefa');
 button.addEventListener('click', criarTarefa);
+
+function mudaCor(event) {
+  const selected = event.target;
+  selected.classList = '';
+  selected.classList.add('cor');
+}
+const tarefaSelected = document.getElementById('lista-tarefas');
+tarefaSelected.addEventListener('click', mudaCor);
