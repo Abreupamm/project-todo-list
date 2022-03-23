@@ -8,16 +8,14 @@ const button = document.getElementById('criar-tarefa');
 
 const finalizados = document.getElementById('remover-finalizados');
 
-const todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas'));
-
-const todaLista2 = [];
+const todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas')) || [];
 
 function criarTarefa() {
   const tarefa = document.createElement('li');
   const tarefa1 = document.querySelector('#texto-tarefa');
   const texto = tarefa1.value;
   tarefa.innerText = texto;
-  todaLista2.push(texto);
+  todaLista.push(texto);
   tarefaSelected.appendChild(tarefa);
   tarefa1.value = '';
 }
@@ -58,23 +56,20 @@ function removerFinalizados() {
 }
 
 function salvarTarefas() {
-  if (todaLista !== undefined) {
-    todaLista2.push(todaLista);
-  }
-  localStorage.setItem('lista-de-tarefas', JSON.stringify(todaLista2));
+  localStorage.setItem('lista-de-tarefas', JSON.stringify(todaLista));
 }
 
-function listaSalva() {
-  const todaLista1 = todaLista;
-  if (todaLista1 !== undefined) {
-    for (let i = 0; i < todaLista1.length; i += 1) {
-      const tarefa2 = document.createElement('li');
-      const texto2 = todaLista1[i];
-      tarefa2.innerText = texto2;
-      tarefaSelected.appendChild(tarefa2);
-    }
-  }
-}
+// function listaSalva() {
+//   const todaLista1 = todaLista;
+//   if (todaLista1 !== null) {
+//     for (let i = 0; i < todaLista1.length; i += 1) {
+//       const tarefa2 = document.createElement('li');
+//       const texto2 = todaLista1[i];
+//       tarefa2.innerText = texto2;
+//       tarefaSelected.appendChild(tarefa2);
+//     }
+//   }
+// }
 button.addEventListener('click', criarTarefa);
 
 tarefaSelected.addEventListener('click', mudaCor);
@@ -87,6 +82,6 @@ finalizados.addEventListener('click', removerFinalizados);
 
 tarefaSalvar.addEventListener('click', salvarTarefas);
 
-window.onload = function regaregar() {
-  listaSalva();
-};
+// window.onload = function () {
+//   listaSalva();
+// };
