@@ -1,14 +1,26 @@
+const tarefaSelected = document.getElementById('lista-tarefas');
+
+const limpar = document.getElementById('apaga-tudo');
+
+const tarefaSalvar = document.getElementById('salvar-tarefas');
+
+const button = document.getElementById('criar-tarefa');
+
+const finalizados = document.getElementById('remover-finalizados');
+
+const todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas'));
+
+const todaLista2 = [];
+
 function criarTarefa() {
   const tarefa = document.createElement('li');
   const tarefa1 = document.querySelector('#texto-tarefa');
   const texto = tarefa1.value;
   tarefa.innerText = texto;
-  const lista = document.getElementById('lista-tarefas');
-  lista.appendChild(tarefa);
+  todaLista2.push(texto);
+  tarefaSelected.appendChild(tarefa);
   tarefa1.value = '';
 }
-const button = document.getElementById('criar-tarefa');
-button.addEventListener('click', criarTarefa);
 
 function mudaCor(event) {
   const temClase = document.getElementsByClassName('cor');
@@ -20,8 +32,6 @@ function mudaCor(event) {
   const selected = event.target;
   selected.classList.add('cor');
 }
-const tarefaSelected = document.getElementById('lista-tarefas');
-tarefaSelected.addEventListener('click', mudaCor);
 
 function tachada(event) {
   const t = event.target;
@@ -32,24 +42,51 @@ function tachada(event) {
     t.classList.add('completed');
   }
 }
-const tarefaSelected2 = tarefaSelected;
-tarefaSelected2.addEventListener('dblclick', tachada);
 
 function limpaLista() {
   const elemento = document.getElementsByTagName('li');
-  for (let i = 0; i < elemento.length; i += 1) {
+  for (let i = elemento.length - 1; i >= 0; i -= 1) {
     elemento[i].remove();
   }
 }
-const limpar = document.getElementById('apaga-tudo');
-limpar.addEventListener('click', limpaLista);
 
 function removerFinalizados() {
   const itens = document.getElementsByClassName('completed');
-  for (let i = 0; i < itens.length; i += 1) {
+  for (let i = itens.length - 1; i >= 0; i -= 1) {
     itens[i].remove();
   }
 }
 
-const finalizados = document.getElementById('remover-finalizados');
+function salvarTarefas() {
+  if (todaLista !== undefined) {
+    todaLista2.push(todaLista);
+  }
+  localStorage.setItem('lista-de-tarefas', JSON.stringify(todaLista2));
+}
+
+function listaSalva() {
+  const todaLista1 = todaLista;
+  if (todaLista1 !== undefined) {
+    for (let i = 0; i < todaLista1.length; i += 1) {
+      const tarefa2 = document.createElement('li');
+      const texto2 = todaLista1[i];
+      tarefa2.innerText = texto2;
+      tarefaSelected.appendChild(tarefa2);
+    }
+  }
+}
+button.addEventListener('click', criarTarefa);
+
+tarefaSelected.addEventListener('click', mudaCor);
+
+tarefaSelected.addEventListener('dblclick', tachada);
+
+limpar.addEventListener('click', limpaLista);
+
 finalizados.addEventListener('click', removerFinalizados);
+
+tarefaSalvar.addEventListener('click', salvarTarefas);
+
+window.onload = function regaregar() {
+  listaSalva();
+};
