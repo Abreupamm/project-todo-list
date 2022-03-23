@@ -4,10 +4,9 @@ function criarTarefa() {
   const texto = tarefa1.value;
   tarefa.innerText = texto;
   const lista = document.getElementById('lista-tarefas');
-  lista.appendChild(tarefa);
-  tarefa1.value = '';
+    lista.appendChild(tarefa);
+    tarefa1.value = '';
 }
-
 const button = document.getElementById('criar-tarefa');
 button.addEventListener('click', criarTarefa);
 
@@ -21,7 +20,6 @@ function mudaCor(event) {
   const selected = event.target;
   selected.classList.add('cor');
 }
-
 const tarefaSelected = document.getElementById('lista-tarefas');
 tarefaSelected.addEventListener('click', mudaCor);
 
@@ -34,6 +32,17 @@ function tachada(event) {
     t.classList.add('completed');
   }
 }
-
 const tarefaSelected2 = tarefaSelected;
 tarefaSelected2.addEventListener('dblclick', tachada);
+
+
+
+
+function limpaLista(){
+  const elemento = document.getElementsByTagName('li');
+  for(let i = 0; i < elemento.length; i += 1){
+    elemento[i].remove();
+  }
+}
+const limpar = document.getElementById('apaga-tudo');
+limpar.addEventListener('click', limpaLista);
