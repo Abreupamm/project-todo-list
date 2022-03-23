@@ -82,6 +82,13 @@ finalizados.addEventListener('click', removerFinalizados);
 
 tarefaSalvar.addEventListener('click', salvarTarefas);
 
-// window.onload = function () {
-//   listaSalva();
-// };
+window.onload = function listaSalva() {
+ if(todaLista !== []){
+  for (let i = 0; i < todaLista.length; i += 1) {
+    const novaLista = document.createElement('li');
+    const texto = todaLista[i];
+    novaLista.innerText = texto;
+    tarefaSelected.appendChild(novaLista);
+  }
+ }
+};
