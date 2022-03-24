@@ -1,7 +1,39 @@
 .cor {
   background-color: gray;
+  width: 400px;
 }
 
 .completed {
   text-decoration: line-through solid black;
+}
+
+header {
+  background-color: rgb(110, 136, 221);
+  width: 80%;
+  margin: auto;
+  margin-top: 80px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+body {
+  background-color: blueviolet;
+}
+p, h1, #caixa-tarefa {
+  text-align: center;
+}
+p, li {
+  font-size: 20px;
+}
+
+#lista-tarefas {
+  margin-left: 140px;
+  width: 80%;
+}
+#texto-tarefa {
+  width: 300px;
+  height: 25px;
+}
+section {
+  text-align: center;
+  margin-top: 10px;
 }
