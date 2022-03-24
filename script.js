@@ -8,12 +8,15 @@ const button = document.getElementById('criar-tarefa');
 
 const finalizados = document.getElementById('remover-finalizados');
 
-let todaLista = localStorage.getItem('lista-de-tarefas')
+let todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas')) || [];
 
 function criarTarefa() {
   const tarefa = document.createElement('li');
   const tarefa1 = document.querySelector('#texto-tarefa');
   const texto = tarefa1.value;
+  if(texto === ''){
+    alert('É necessario criar uma tarefa')
+  }
   tarefa.innerText = texto;
   tarefaSelected.appendChild(tarefa);
   tarefa1.value = '';
@@ -32,7 +35,7 @@ function mudaCor(event) {
 
 function tachada(event) {
   const t = event.target;
-  if ( t.classList.contains('completed')) {
+  if (t.classList.contains('completed')) {
     t.classList.remove('completed');
   } else {
     t.classList.add('completed');
@@ -54,15 +57,14 @@ function removerFinalizados() {
 }
 
 
-// function salvarTarefas() {
-//  todaLista = document.getElementsByTagName('li').innerHtml
-// // todaLista = [];
-// //   const t = document.getElementsByTagName('li')
-// //   for(let i = 0; i < t.length; i +=1){
-// //     todaLista.push(t[i].innerHTML)
-// //   }
-//   localStorage.setItem('lista-de-tarefas', todaLista);
-// }
+function salvarTarefas() {
+todaLista = [];
+  const t = document.getElementsByTagName('li')
+  for(let i = 0; i < t.length; i +=1){
+    todaLista.push(t[i].innerHTML)
+  }
+  localStorage.setItem('lista-de-tarefas', JSON.stringify(todaLista));
+}
 
 button.addEventListener('click', criarTarefa);
 
@@ -76,13 +78,13 @@ finalizados.addEventListener('click', removerFinalizados);
 
 tarefaSalvar.addEventListener('click', salvarTarefas);
 
-// window.onload = function listaSalva() {
-//   if (todaLista !== []) {
-//     // for (let i = 0; i < todaLista.length; i += 1) {
-//     //   const novaLista = document.createElement('li');
-//     //   const texto = todaLista[i];
-//     //   novaLista.innerHTML = texto;
-//     //   tarefaSelected.appendChild(novaLista);
-//     // }
-//   }
-// };
+window.onload = function listaSalva() {
+  if (todaLista !== []) {
+    for (let i = 0; i < todaLista.length; i += 1) {
+      const novaLista = document.createElement('li');
+      const texto = todaLista[i];
+      novaLista.innerHTML = texto;
+      tarefaSelected.appendChild(novaLista);
+    }
+  }
+};
