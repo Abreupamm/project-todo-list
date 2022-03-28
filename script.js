@@ -7,9 +7,9 @@ const tarefaSalvar = document.getElementById('salvar-tarefas');
 const button = document.getElementById('criar-tarefa');
 
 const finalizados = document.getElementById('remover-finalizados');
-const buttonSubir = document.getElementById('mover-cima');
+// const buttonSubir = document.getElementById('mover-cima');
 
-let todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas')) || [];
+// let todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas')) || [];
 
 function criarTarefa() {
   const tarefa = document.createElement('li');
@@ -36,14 +36,12 @@ function mudaCor(event) {
 }
 
 // function subirCor() {
-//   for (let i = 0; i < elemento.length; i += 1) {
-//     if(elemento[i].classList.contains('cor')){
-//       temClase[0].classList.value = '';
-//       let sobe = i + 1;
-//       let el2 = elemento[sobe]
-//       el2.classList.add('cor');
-//     }
-//   }
+//   const c = e.classList.contains('cor');
+//     let e = elemento.indexOf(c, 0);
+//     c.classList.value.remove('cor');
+//     let sobe = e - 1;
+//     let el2 = elemento[sobe];
+//     el2.classList.add('cor');
 
 // }
 function tachada(event) {
@@ -69,11 +67,10 @@ function removerFinalizados() {
 }
 
 function salvarTarefas() {
-  todaLista = [];
-  for (let i = 0; i < elemento.length; i += 1) {
-    todaLista.push(elemento[i].innerHTML);
-  }
-  localStorage.setItem('lista-de-tarefas', JSON.stringify(todaLista));
+  localStorage.setItem(
+    'salvar-tarefas',
+    JSON.stringify(tarefaSelected.innerHTML)
+  );
 }
 
 button.addEventListener('click', criarTarefa);
@@ -91,12 +88,10 @@ tarefaSalvar.addEventListener('click', salvarTarefas);
 // buttonSubir.addEventListener('click', subirCor);
 
 window.onload = function listaSalva() {
-  if (todaLista !== []) {
-    for (let i = 0; i < todaLista.length; i += 1) {
-      const novaLista = document.createElement('li');
-      const texto = todaLista[i];
-      novaLista.innerHTML = texto;
-      tarefaSelected.appendChild(novaLista);
-    }
+  const lista = JSON.parse(
+    localStorage.getItem('salvar-tarefas', tarefaSelected.innerHTML)
+  );
+  if (lista) {
+    tarefaSelected.innerHTML = lista;
   }
 };
