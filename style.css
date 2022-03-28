@@ -1,6 +1,6 @@
 .cor {
   background-color: gray;
-  width: 400px;
+  width: 60%;
 }
 
 .completed {
@@ -15,12 +15,15 @@ header {
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
 body {
   background-color: blueviolet;
 }
+
 p, h1, #caixa-tarefa {
   text-align: center;
 }
+
 p, li {
   font-size: 20px;
 }

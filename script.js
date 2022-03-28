@@ -7,9 +7,9 @@ const tarefaSalvar = document.getElementById('salvar-tarefas');
 const button = document.getElementById('criar-tarefa');
 
 const finalizados = document.getElementById('remover-finalizados');
-// const buttonSubir = document.getElementById('mover-cima');
-
-// let todaLista = JSON.parse(localStorage.getItem('lista-de-tarefas')) || [];
+const buttonSubir = document.getElementById('mover-cima');
+const buttonDescer = document.getElementById('mover-baixo');
+const buttonRemove = document.getElementById('remover-selecionado');
 
 function criarTarefa() {
   const tarefa = document.createElement('li');
@@ -35,15 +35,36 @@ function mudaCor(event) {
   selected.classList.add('cor');
 }
 
-// function subirCor() {
-//   const c = e.classList.contains('cor');
-//     let e = elemento.indexOf(c, 0);
-//     c.classList.value.remove('cor');
-//     let sobe = e - 1;
-//     let el2 = elemento[sobe];
-//     el2.classList.add('cor');
+function caminhaSelected(i, i2) {
+  const item1 = elemento[i].innerHTML;
+  const item2 = elemento[i2].innerHTML;
+  elemento[i].innerHTML = item2;
+  elemento[i2].innerHTML = item1;
 
-// }
+  const class1 = elemento[i].classList.value;
+  const class2 = elemento[i2].classList.value;
+  elemento[i].classList = class2;
+  elemento[i2].classList = class1;
+}
+
+function subir() {
+  for (let i = 1; i < elemento.length; i += 1) {
+    if (elemento[i].classList.contains('cor')) {
+      const i2 = i - 1;
+      caminhaSelected(i, i2);
+    }
+  }
+}
+
+function descer() {
+  for (let i = elemento.length - 1; i >= 0; i -= 1) {
+    if (elemento[i].classList.contains('cor')) {
+      const i2 = i + 1;
+      caminhaSelected(i, i2);
+    }
+  }
+}
+
 function tachada(event) {
   const t = event.target;
   if (t.classList.contains('completed')) {
@@ -66,11 +87,16 @@ function removerFinalizados() {
   }
 }
 
+function apagarTarefa() {
+  for (let i = 0; i < elemento.length; i += 1) {
+    if (elemento[i].classList.contains('cor')) {
+      elemento[i].remove();
+    }
+  }
+}
+
 function salvarTarefas() {
-  localStorage.setItem(
-    'salvar-tarefas',
-    JSON.stringify(tarefaSelected.innerHTML)
-  );
+  localStorage.setItem('salvar-tarefas', JSON.stringify(tarefaSelected.innerHTML));
 }
 
 button.addEventListener('click', criarTarefa);
@@ -85,12 +111,15 @@ finalizados.addEventListener('click', removerFinalizados);
 
 tarefaSalvar.addEventListener('click', salvarTarefas);
 
-// buttonSubir.addEventListener('click', subirCor);
+buttonSubir.addEventListener('click', subir);
+
+buttonDescer.addEventListener('click', descer);
+
+buttonRemove.addEventListener('click', apagarTarefa);
 
 window.onload = function listaSalva() {
   const lista = JSON.parse(
-    localStorage.getItem('salvar-tarefas', tarefaSelected.innerHTML)
-  );
+    localStorage.getItem('salvar-tarefas', tarefaSelected.innerHTML));
   if (lista) {
     tarefaSelected.innerHTML = lista;
   }
