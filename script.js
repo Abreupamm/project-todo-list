@@ -57,7 +57,7 @@ function subir() {
 }
 
 function descer() {
-  for (let i = elemento.length - 1; i >= 0; i -= 1) {
+  for (let i = elemento.length -2; i >= 0; i -= 1) {
     if (elemento[i].classList.contains('cor')) {
       const i2 = i + 1;
       caminhaSelected(i, i2);
