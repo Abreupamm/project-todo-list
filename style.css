@@ -1,3 +1,39 @@
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(34, 5, 79);
+  background: linear-gradient(
+    180deg,
+    rgba(34, 5, 79, 1) 19%,
+    rgba(40, 5, 75, 1) 36%,
+    rgba(46, 8, 92, 1) 61%,
+    rgba(60, 12, 107, 1) 83%,
+    rgba(67, 7, 128, 1) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  background-color: rgba(0, 0, 0, 0.667);
+  width: 100%;
+  height: 100px;
+}
+
+
+header #icon {
+  width: 90px;
+  margin: 20px;
+}
+
 .cor {
   background-color: gray;
   width: 60%;
@@ -7,24 +43,15 @@
   text-decoration: line-through solid black;
 }
 
-header {
-  background-color: white;
-  width: 80%;
-  margin: auto;
-  margin-top: 80px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-body {
-  background-color: blueviolet;
-}
-
-p, h1, #caixa-tarefa {
+p,
+h1,
+#caixa-tarefa {
   text-align: center;
+  color: aliceblue;
 }
 
-p, li {
+p,
+li {
   font-size: 20px;
 }
 

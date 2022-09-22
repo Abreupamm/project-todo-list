@@ -1,15 +1,13 @@
 const tarefaSelected = document.getElementById('lista-tarefas');
-
 const limpar = document.getElementById('apaga-tudo');
-
 const tarefaSalvar = document.getElementById('salvar-tarefas');
-
 const button = document.getElementById('criar-tarefa');
-
 const finalizados = document.getElementById('remover-finalizados');
 const buttonSubir = document.getElementById('mover-cima');
 const buttonDescer = document.getElementById('mover-baixo');
 const buttonRemove = document.getElementById('remover-selecionado');
+const elemento = document.getElementsByTagName('li');
+const temClase = document.getElementsByClassName('cor');
 
 function criarTarefa() {
   const tarefa = document.createElement('li');
@@ -22,8 +20,6 @@ function criarTarefa() {
   tarefaSelected.appendChild(tarefa);
   tarefa1.value = '';
 }
-const elemento = document.getElementsByTagName('li');
-const temClase = document.getElementsByClassName('cor');
 
 function mudaCor(event) {
   if (temClase.length > 0) {
@@ -100,21 +96,13 @@ function salvarTarefas() {
 }
 
 button.addEventListener('click', criarTarefa);
-
 tarefaSelected.addEventListener('click', mudaCor);
-
 tarefaSelected.addEventListener('dblclick', tachada);
-
 limpar.addEventListener('click', limpaLista);
-
 finalizados.addEventListener('click', removerFinalizados);
-
 tarefaSalvar.addEventListener('click', salvarTarefas);
-
 buttonSubir.addEventListener('click', subir);
-
 buttonDescer.addEventListener('click', descer);
-
 buttonRemove.addEventListener('click', apagarTarefa);
 
 window.onload = function listaSalva() {
