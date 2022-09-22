@@ -105,14 +105,14 @@ function descer() {
   }
 }
 
-function tachada(event) {
+function finishedTask(event) {
   const t = event.target;
   if (t.classList.contains('completed')) {
     t.classList.remove('completed');
   } else {
     t.classList.add('completed');
   }
-}
+};
 
 function limpaLista() {
   for (let i = elementLi.length - 1; i >= 0; i -= 1) {
@@ -140,7 +140,7 @@ function deleteTask() {
 
 button.addEventListener('click', createTask);
 taskSelected.addEventListener('click', mudaCor);
-taskSelected.addEventListener('dblclick', tachada);
+taskSelected.addEventListener('dblclick', finishedTask);
 limpar.addEventListener('click', limpaLista);
 finalizados.addEventListener('click', removerFinalizados);
 buttonSubir.addEventListener('click', subir);

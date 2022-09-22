@@ -45,7 +45,7 @@ header #icon {
 }
 
 .completed {
-  text-decoration: line-through solid black;
+  text-decoration: line-through solid rgb(255, 255, 255);
 }
 
 p,
