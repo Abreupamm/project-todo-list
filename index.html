@@ -17,7 +17,13 @@
       Clique duas vezes em um item para marcá-lo como completo
     </p>
     <div id="caixa-tarefa">
-      <input id="texto-tarefa" type="text" placeholder="Digite sua tarefa" />
+      <input id="task-text" type="text" placeholder="Digite sua tarefa" />
+      <select id="task-type" type="">
+      <option value="pessoal" selected>Pessoal</option>
+      <option value="trabalho">Trabalho</option> 
+      <option value="desejo">Lista de desejos</option> 
+      <option value="compras">Compras</option> 
+      </select>
       <button id="criar-tarefa">Criar Tarefa</button>
     </div>
     <section>
@@ -28,7 +34,7 @@
       <button id="remover-finalizados">Remover Finalizados</button>
       <button id="salvar-tarefas">Salvar lista</button>
     </section>
-    <ol id="lista-tarefas"></ol>
+    <ol id="task-list"></ol>
     <script src="script.js"></script>
   </body>
 </html>
