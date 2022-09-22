@@ -39,7 +39,7 @@ header #icon {
   margin: 40px;
 }
 
-.cor {
+.selected {
   background-color: gray;
   width: 60%;
 }

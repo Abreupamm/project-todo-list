@@ -11,7 +11,7 @@ const buttonSubir = document.getElementById('mover-cima');
 const buttonDescer = document.getElementById('mover-baixo');
 const buttonRemove = document.getElementById('remover-selecionado');
 const elementLi = document.getElementsByTagName('li');
-const temClase = document.getElementsByClassName('cor');
+const isSelected = document.getElementsByClassName('selected');
 
 function saveTasks() {
   localStorage.setItem('salvar-tarefas', JSON.stringify(taskSelected.innerHTML));
@@ -129,7 +129,7 @@ function removerFinalizados() {
 
 function deleteTask() {
   for (let i = 0; i < elementLi.length; i += 1) {
-    if (elementLi[i].classList.contains('cor')) {
+    if (elementLi[i].classList.contains('selected')) {
       elementLi[i].remove();
     }
   }
@@ -143,12 +143,11 @@ taskSelected.addEventListener('click', mudaCor);
 taskSelected.addEventListener('dblclick', tachada);
 limpar.addEventListener('click', limpaLista);
 finalizados.addEventListener('click', removerFinalizados);
-// tarefaSalvar.addEventListener('click', salvarTarefas);
 buttonSubir.addEventListener('click', subir);
 buttonDescer.addEventListener('click', descer);
 buttonRemove.addEventListener('click', deleteTask);
 
-window.onload = function listaSalva() {
+window.onload = function listSave() {
   const lista = JSON.parse(
     localStorage.getItem('salvar-tarefas', taskSelected.innerHTML));
   if (lista) {
