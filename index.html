@@ -9,19 +9,17 @@
   </head>
   <body>
     <header>
-      <img id="icon" src="images/wishlist.png"/>
+      <img id="icon" src="images/wishlist.png" />
       <h1>Minha Lista de Tarefas</h1>
-      <p>></p>
+      <input type="image" id="icon-seta" src="images/seta.png" />
     </header>
-      <p id="funcionamento">
-        Clique duas vezes em um item para marcá-lo como completo
-      </p>
-      <div id="caixa-tarefa">
+    <p id="funcionamento">
+      Clique duas vezes em um item para marcá-lo como completo
+    </p>
+    <div id="caixa-tarefa">
       <input id="texto-tarefa" type="text" placeholder="Digite sua tarefa" />
       <button id="criar-tarefa">Criar Tarefa</button>
     </div>
-      <ol id="lista-tarefas"></ol>
-    
     <section>
       <button id="remover-selecionado">Apagar tarefa</button>
       <button id="mover-cima">subir</button>
@@ -30,6 +28,7 @@
       <button id="remover-finalizados">Remover Finalizados</button>
       <button id="salvar-tarefas">Salvar lista</button>
     </section>
+    <ol id="lista-tarefas"></ol>
     <script src="script.js"></script>
   </body>
 </html>

@@ -28,10 +28,15 @@ header {
   height: 100px;
 }
 
+header #icon-seta {
+  width: 50px;
+  margin: 50px;
+}
+
 
 header #icon {
   width: 90px;
-  margin: 20px;
+  margin: 40px;
 }
 
 .cor {
