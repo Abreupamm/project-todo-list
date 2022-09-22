@@ -14,30 +14,33 @@ const elementLi = document.getElementsByTagName('li');
 const isSelected = document.getElementsByClassName('selected');
 
 function saveTasks() {
-  localStorage.setItem('salvar-tarefas', JSON.stringify(taskSelected.innerHTML));
+  localStorage.setItem(
+    'salvar-tarefas',
+    JSON.stringify(taskSelected.innerHTML)
+  );
 }
 
 function createIcon(type) {
   const img = document.createElement('img');
-  img.classList = 'type-icon'
+  img.classList = 'type-icon';
   switch (type) {
     case 'pessoal':
-    img.src = 'images/do-utilizador.png';
-    break;
+      img.src = 'images/do-utilizador.png';
+      break;
     case 'trabalho':
-    img.src = 'images/briefcase.png';
-    break;
+      img.src = 'images/briefcase.png';
+      break;
     case 'desejo':
-    img.src = 'images/favorito.png';
-    break;
+      img.src = 'images/favorito.png';
+      break;
     case 'compras':
-    img.src = 'images/bolsa-de-compras.png';
-    break;
- 
-  default:
-    break;
- }
- return img;
+      img.src = 'images/bolsa-de-compras.png';
+      break;
+
+    default:
+      break;
+  }
+  return img;
 }
 
 // function salveData(name, type) {
@@ -62,17 +65,33 @@ function createTask() {
     task.value = null;
     saveTasks();
   }
+}
+
+const isSelectedTalk = (talk) => {
+  const e = talk.classList;
+  let result = false;
+  for (let index = 0; index < e.length; index++) {
+    const element = e[index];
+    if (element === 'selected') result = true;
+  }
+  return result;
 };
 
+function selectTask(event) {
+  const selected = event.target;
+  const isElementSelected = isSelectedTalk(selected);
 
-function mudaCor(event) {
-  if (temClase.length > 0) {
-    for (let i = 0; i < temClase.length; i += 1) {
-      temClase[i].classList.remove('cor');
+  if (isSelected.length > 0) {
+    for (let i = 0; i < isSelected.length; i += 1) {
+      isSelected[i].classList.remove('selected');
     }
   }
-  const selected = event.target;
-  selected.classList.add('cor');
+
+  if (isElementSelected) {
+    selected.classList.remove('selected');
+  } else {
+    selected.classList.add('selected');
+  }
 }
 
 function caminhaSelected(i, i2) {
@@ -97,7 +116,7 @@ function subir() {
 }
 
 function descer() {
-  for (let i = elementLi.length -2; i >= 0; i -= 1) {
+  for (let i = elementLi.length - 2; i >= 0; i -= 1) {
     if (elementLi[i].classList.contains('cor')) {
       const i2 = i + 1;
       caminhaSelected(i, i2);
@@ -112,7 +131,8 @@ function finishedTask(event) {
   } else {
     t.classList.add('completed');
   }
-};
+  saveTasks();
+}
 
 function limpaLista() {
   for (let i = elementLi.length - 1; i >= 0; i -= 1) {
@@ -134,12 +154,10 @@ function deleteTask() {
     }
   }
   saveTasks();
-};
-
-
+}
 
 button.addEventListener('click', createTask);
-taskSelected.addEventListener('click', mudaCor);
+taskSelected.addEventListener('click', selectTask);
 taskSelected.addEventListener('dblclick', finishedTask);
 limpar.addEventListener('click', limpaLista);
 finalizados.addEventListener('click', removerFinalizados);
@@ -149,7 +167,8 @@ buttonRemove.addEventListener('click', deleteTask);
 
 window.onload = function listSave() {
   const lista = JSON.parse(
-    localStorage.getItem('salvar-tarefas', taskSelected.innerHTML));
+    localStorage.getItem('salvar-tarefas', taskSelected.innerHTML)
+  );
   if (lista) {
     taskSelected.innerHTML = lista;
   }
