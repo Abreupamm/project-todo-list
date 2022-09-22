@@ -93,3 +93,14 @@ section {
   margin: 25px auto;
   width: 50%;
 }
+
+.div-icon-talk {
+  display: flex;
+  justify-content: space-between;
+  width: 80px;
+}
+
+.checkbox {
+  width: 25px;
+  margin-left: 15px;
+}

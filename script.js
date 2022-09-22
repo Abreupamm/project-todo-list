@@ -1,15 +1,12 @@
-// const type = ['Pessoal', 'Trabalho', 'Lista de desejos', 'Compras'];
-
-// const data = [];
-
 const taskSelected = document.getElementById('task-list');
-const limpar = document.getElementById('apaga-tudo');
+const removeAllTalks = document.getElementById('remove-all');
 const tarefaSalvar = document.getElementById('salvar-tarefas');
 const button = document.getElementById('criar-tarefa');
 const finalizados = document.getElementById('remover-finalizados');
 const buttonSubir = document.getElementById('mover-cima');
 const buttonDescer = document.getElementById('mover-baixo');
 const buttonRemove = document.getElementById('remover-selecionado');
+const buttonFinished = document.getElementById('finished');
 const elementLi = document.getElementsByTagName('li');
 const isSelected = document.getElementsByClassName('selected');
 
@@ -18,6 +15,7 @@ function saveTasks() {
     'salvar-tarefas',
     JSON.stringify(taskSelected.innerHTML)
   );
+  console.log(taskSelected.innerHTML);
 }
 
 function createIcon(type) {
@@ -43,12 +41,29 @@ function createIcon(type) {
   return img;
 }
 
-// function salveData(name, type) {
-//   const id = data.length + 1;
-//   const salveData = {id, name, type};
-//   data.push(salveData);
-//   return;
-// };
+function createFinished(talk) {
+  let element;
+  for (let index = 0; index < elementLi.length; index++) {
+    if(elementLi[index].innerText === talk.name)
+    element = elementLi[index];
+  };
+
+  if(talk.checked) {
+    element.classList.add('completed');
+    talk.classList.add('checked');
+  } else {
+    element.classList.remove('completed');
+    talk.classList.remove('checked');
+  }
+  
+  saveTasks();
+};
+
+function finishedTask(talk) {
+  if (talk.classList.contains('checkbox')) {
+      createFinished(talk);
+  }
+}
 
 function createTask() {
   const type = document.getElementById('task-type');
@@ -58,28 +73,28 @@ function createTask() {
     alert('É necessario criar uma tarefa');
   } else {
     const taskList = document.createElement('li');
+    const checkbox = document.createElement('input');
+    const div = document.createElement('div');
+    div.classList = 'div-icon-talk';
+    checkbox.classList = 'checkbox';
+
     taskList.classList.add('list', option);
     taskList.innerText = task.value;
+    checkbox.type = 'checkbox';
+    checkbox.name = task.value;
+
     taskSelected.appendChild(taskList);
-    taskList.appendChild(createIcon(option));
+    div.appendChild(createIcon(option));
+    div.appendChild(checkbox);
+    taskList.appendChild(div);
     task.value = null;
     saveTasks();
   }
 }
 
-const isSelectedTalk = (talk) => {
-  const e = talk.classList;
-  let result = false;
-  for (let index = 0; index < e.length; index++) {
-    const element = e[index];
-    if (element === 'selected') result = true;
-  }
-  return result;
-};
-
 function selectTask(event) {
   const selected = event.target;
-  const isElementSelected = isSelectedTalk(selected);
+  const isElementSelected = selected.classList.contains('selected');
 
   if (isSelected.length > 0) {
     for (let i = 0; i < isSelected.length; i += 1) {
@@ -92,6 +107,8 @@ function selectTask(event) {
   } else {
     selected.classList.add('selected');
   }
+  saveTasks();
+  finishedTask(selected);
 }
 
 function caminhaSelected(i, i2) {
@@ -124,20 +141,11 @@ function descer() {
   }
 }
 
-function finishedTask(event) {
-  const t = event.target;
-  if (t.classList.contains('completed')) {
-    t.classList.remove('completed');
-  } else {
-    t.classList.add('completed');
-  }
-  saveTasks();
-}
-
-function limpaLista() {
+function removeAll() {
   for (let i = elementLi.length - 1; i >= 0; i -= 1) {
     elementLi[i].remove();
   }
+  saveTasks();
 }
 
 function removerFinalizados() {
@@ -158,8 +166,7 @@ function deleteTask() {
 
 button.addEventListener('click', createTask);
 taskSelected.addEventListener('click', selectTask);
-taskSelected.addEventListener('dblclick', finishedTask);
-limpar.addEventListener('click', limpaLista);
+removeAllTalks.addEventListener('click', removeAll);
 finalizados.addEventListener('click', removerFinalizados);
 buttonSubir.addEventListener('click', subir);
 buttonDescer.addEventListener('click', descer);
@@ -171,5 +178,12 @@ window.onload = function listSave() {
   );
   if (lista) {
     taskSelected.innerHTML = lista;
+    const inputCheckbox = document.getElementsByClassName('checkbox')
+    for (let index = 0; index < inputCheckbox.length; index++) {
+      const element = inputCheckbox[index];
+      if(element.classList.contains('checked')) {
+        element.checked = true;
+      }
+    }
   }
 };
