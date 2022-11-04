@@ -14,7 +14,9 @@
       <input type="image" id="icon-seta" src="images/seta.png" />
     </header>
     <p id="funcionamento">
-      Clique duas vezes em um item para marcá-lo como completo
+      Escoha uma categoria para adicionar a tarefa
+       <br><br>
+      Clique uma vez no item para selecioná-lo
     </p>
     <div id="caixa-tarefa">
       <input id="task-text" type="text" placeholder="Digite sua tarefa" />
@@ -26,16 +28,16 @@
       </select>
       <button id="criar-tarefa">Criar Tarefa</button>
     </div>
-    <section>
-      <button id="remover-selecionado">Apagar tarefa</button>
-      <button id="mover-cima">subir</button>
-      <button id="mover-baixo">descer</button>
-      <button id="remove-all">Apagar Tudo</button>
-      <input type="checkbox" id="finished">Marcar como concluida</button>
-      <button id="remover-finalizados">Remover Finalizados</button>
-      <!-- <button id="salvar-tarefas">Salvar lista</button> -->
+    <section id="buttons-container">
+      <button class="buttons-top" id="remover-selecionado">Apagar</button>
+      <button class="buttons-top" id="mover-cima">subir</button>
+      <button class="buttons-top" id="mover-baixo">descer</button>
     </section>
     <ol id="task-list"></ol>
+    <section id="buttons-container-bottom">
+      <button class="buttons-bottom" id="remover-finalizados">Remover Finalizados</button>
+      <button class="buttons-bottom" id="remove-all">Apagar Tudo</button>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>
