@@ -1,12 +1,26 @@
+# Boas vindas ao repositório do projeto Lista de Tarefas!
+
 # Habilidades
-Manipular CSS
 
-Manipular Javascript
+- Manipular CSS
 
-# O que deverá ser desenvolvido
-Será desenvolvido uma lista de tarefas usando HTML, CSS e JavaScript.
+- Manipular Javascript
 
-![](Gravação de tela de 04-11-2022 19:51:21.webm)
+--- 
 
-# Nota do projeto
-<img src="https://user-images.githubusercontent.com/99986000/166063674-31882b0a-e483-49a0-b786-9ab4cb99e89b.png" />
+## Como foi desenvolvido
+
+- Uma lista de tarefas usando `HTML`, `CSS` e `JavaScript`.
+
+
+
+# Como acessar a aplicação:
+
+Link da aplicação <a href='https://abreupamm.github.io/project-todo-list/'>Trybe Warts</a>
+  
+## O que foi desenvolvido
+
+### 💡Veja o exemplo a seguir de como o projeto ficou.
+
+![exemplo de uma todo list](./todo-list-example.gif)
+
