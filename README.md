@@ -16,7 +16,7 @@
 
 # Como acessar a aplicação:
 
-Link da aplicação <a href='https://abreupamm.github.io/project-todo-list/'>Trybe Warts</a>
+Link da aplicação <a href='https://abreupamm.github.io/project-todo-list/'>Todo-list</a>
   
 ## O que foi desenvolvido
 
