@@ -22,5 +22,5 @@ Link da aplicação <a href='https://abreupamm.github.io/project-todo-list/'>Tod
 
 ### 💡Veja o exemplo a seguir de como o projeto ficou.
 
-![exemplo de uma todo list](./todo-list-example.gif)
+![exemplo de uma todo list](./todo-list.gif)
 
